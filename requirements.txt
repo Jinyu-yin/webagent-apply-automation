@@ -1,0 +1,41 @@
+# Browser Use 核心包
+browser-use==0.4.4
+
+# 核心依赖
+aiofiles>=24.1.0
+anyio>=4.9.0
+bubus>=1.2.2
+google-api-core>=2.25.0
+httpx>=0.28.1
+markdownify==1.1.0
+patchright>=1.52.5
+playwright>=1.52.0
+portalocker>=2.7.0,<3.0.0
+posthog>=3.7.0
+psutil>=7.0.0
+pydantic>=2.11.5
+pyperclip>=1.9.0
+python-dotenv>=1.0.1
+requests>=2.32.3
+typing-extensions>=4.12.2
+uuid7>=0.1.0
+authlib>=1.6.0
+
+# LLM 相关依赖
+google-genai>=1.21.1
+openai>=1.81.0
+anthropic>=0.54.0
+groq>=0.28.0
+ollama>=0.5.1
+
+# Web 服务依赖
+fastapi>=0.115.8
+uvicorn>=0.34.0
+
+# 平台特定依赖（Windows）
+screeninfo>=0.8.1
+
+# CLI 相关依赖（可选）
+rich>=14.0.0
+click>=8.1.8
+textual>=3.2.0 

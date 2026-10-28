@@ -1,0 +1,37 @@
+version: '3.8'
+
+services:
+  webagent-api:
+    build:
+      context: .
+      dockerfile: Dockerfile.v2
+    container_name: webagent-api-v2
+    ports:
+      - "7754:7754"
+    environment:
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+      - OPENAI_BASE_URL=${OPENAI_BASE_URL:-https://api.openai.com/v1}
+      - CALLBACK_URL=${CALLBACK_URL}
+      - HOST=0.0.0.0
+      - PORT=7754
+      - LOG_LEVEL=${LOG_LEVEL:-INFO}
+      - DEFAULT_AUTOMATION_MODE=${DEFAULT_AUTOMATION_MODE:-llm_form}
+      - HEADLESS=${HEADLESS:-false}
+    volumes:
+      - ./configs:/app/configs
+      - ./logs:/app/logs
+      - ./llm_form_automation:/app/llm_form_automation
+      - ./payloads:/app/payloads
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "python", "-c", "import requests; requests.get('http://localhost:7754/health')"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    networks:
+      - webagent-network
+
+networks:
+  webagent-network:
+    driver: bridge

@@ -1,0 +1,17 @@
+services:
+  web_agent:
+    build: .
+    image: 'web_agent'
+    container_name: 'web_agent'
+    pull_policy: never
+    expose:
+      - "7754"
+    network_mode: host
+    volumes:
+      - /data/WebAgent/logs:/data/WebAgent/logs
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
+    restart: unless-stopped
+    stop_signal: SIGINT
+    tty: true
+    stdin_open: true
